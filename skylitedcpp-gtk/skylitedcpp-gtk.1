@@ -1,0 +1,171 @@
+.TH "skylitedcpp-gtk" 1 "27 Aug 2013"
+.SH "NAME"
+SkyliteDC++_Gtk \- GUI based on Gtk (based on FreeDC++ and LinuxDC++)
+.SH "SYNOPSIS"
+.PP
+.B skylitedcpp-gtk
+<magnet link> <dchub://link> <adc(s)://link>
+.br
+.B skylitedcpp-gtk
+<Key>
+.SH "DESCRIPTION"
+.PP
+\fBSkyliteDC++\fP is a cross-platform program that uses the Direct Connect and ADC protocol. It is compatible with other DC clients, such as the original DC from Neomodus, DC++ and derivatives. SkyliteDC++ also interoperates with all common DC hub software.
+.SH "COMMAND LINE OPTIONS"
+.RB "A summary of options is included below."
+.TP
+.BR "\-h,  \-\-help"
+display help and exit
+.TP
+.BR "\-V,  \-\-version"
+output version information and exit
+.SH "KEYBOARD SHORTCUTS"
+.RB "These are default keyboard shortcuts. You can change them in any text editor. For example:"
+.br
+sudo nano /usr/share/skylitedcpp/gtk/ui/mainwindow.ui
+.TP
+.B "Ctrl+O"
+Open options window
+.TP
+.B "Ctrl+L"
+Open own filelist
+.TP
+.B "Ctrl+E"
+Refresh share
+.TP
+.B "Ctrl+R"
+Reconnect to hub
+.TP
+.B "Ctrl+N"
+Quick connect
+.TP
+.B "Ctrl+H"
+Favourite hubs
+.TP
+.B "Ctrl+P"
+Public hubs
+.TP
+.B "Ctrl+U"
+Favourite users
+.TP
+.B "Ctrl+D"
+Show/hide downloads queue widget
+.TP
+.B "Ctrl+S"
+Open search widget
+.TP
+.B "Ctrl+F"
+Show/hide find or filter frame
+.TP
+.B "Ctrl+A"
+Select all
+.TP
+.B "Ctrl+W"
+Close current widget
+.TP
+.B "Ctrl+PageUp"
+Switch to the previous widget. Available only if widget panel is used, not working in mode of sidebar.
+.TP
+.B "Ctrl+PageDown"
+Switch to the next widget. Available only if widget panel is used, not working in mode of sidebar.
+.TP
+.B "Up"
+Switch to the previous string from history of sent messages in chat for current session. Available only when input frame is focused on.
+.TP
+.B "Down"
+Switch to the next string from history of sent messages in chat for current session. Available only when input frame is focused on.
+.SH "CHAT COMMANDS"
+/away <message> \- Away mode message on/off
+.br
+/back \- Away mode off
+.br
+/browse <nick> \- browse user files
+.br
+/clear \- Clear chat
+.br
+/close \- Close chat
+.br
+/favorite, /fav \- Add a hub to favorites
+.br
+/fuser, /fu <nick> \- Add user to favorites list
+.br
+/removefu, /rmfu <nick> \- Remove user favorite
+.br
+/listfu, /lsfu \- Show favorites list
+.br
+/getlist <nick> \- Get file list
+.br
+/grant <nick> \- Grant extra slot
+.br
+/help \- Show help
+.br
+/join <address> \- Connect to the hub
+.br
+/me <message> \- Say a third person
+.br
+/pm <nick> \- Private message
+.br
+/rebuild \- Rebuild hash
+.br
+/refresh \- Update own file list
+.br
+/userlist \- User list show/hide
+.br
+/version \- Show version
+.br
+/emoticons, /emot \- Emoticons on/off
+.br
+/luafile <file> \- Load Lua file
+.br
+/lua <chunk> \- Execute Lua Chunk
+.br
+/sh \- Execute code (bash)
+.br
+/alias list \- Alias List
+.br
+/alias purge A \- Alias Remove A
+.br
+/alias A::uname \-a \- Alias add uname \-a as A
+.br
+/A \- Alias A executing
+.br
+/ip on/off \- Ipfilter on/off
+.br
+/ip list \- Show ipfilter rules list
+.br
+/ip up/down \- Move rule up/down
+.br
+/ip purge 192.168.1.0/23;192.168.6.0/24 \- Remove rules from list
+.br
+/ip 192.168.1.0/23::in;!192.168.6.0/24::both \- Add rule 192.168.1.0/23 where direction incoming and action is allow and 192.168.6.0/24 where direction is incoming or outcoming and action is drop
+.br
+/dcpps <param> [value] \- set Core option param in value (without value return current value of option)
+    New settings will be applied immediately and will be stored in config 
+    (i.e. ~/.config/skylitedc++++/DCPlusPlus.xml) as well.
+    For example:
+    /dcpps MinimumSearchInterval 5 (specify minimal search interval to 5 seconds)
+.br
+/ws <param> [value] \- set GUI option param in value (without value return current value of option)
+    New settings will be applied immediately and will be stored in config 
+    (i.e. ~/.config/skylitedc++++/SkyliteDC++_Gtk.xml) as well.
+    For example:
+    /ws sound-command aplay (specify program for sound playing)
+.SH "FILES"
+.TP
+.B "/usr/share/skylitedcpp/gtk"
+Directory with some resource files
+.TP
+.B "~/.config/skylitedc++++/" or "$XDG_CONFIG_HOME/skylitedc++++/"
+Directory with configuration files
+.TP
+.B "/usr/share/skylitedcpp/examples"
+Directory with examples of custom scripts (see /sh chat command)
+.SH AUTHOR
+Full list of authors you can find in file Credits.txt
+.br
+SkyliteDC++ homepage: \fBhttp://code.google.com/p/skylitedc++/\fR
+.SH "BUG REPORTS"
+If you find a bug in SkyliteDC++ please report it here:
+.B http://code.google.com/p/skylitedc++/issues/list
+.PP
+This manual page was written by Boris Pek <tehnick-8@mail.ru> for the Debian project (and may be used by others).
