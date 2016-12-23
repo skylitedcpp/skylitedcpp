@@ -1,0 +1,49 @@
+.TH "skylitedcpp-cli-xmlrpc" 1 "19 Feb 2012"
+.SH "NAME"
+SkyliteDC++_CLI \- simple command line interface for SkyliteDC++ Daemon written on perl
+.SH "SYNOPSIS"
+.PP
+.B skylitedcpp-cli-xmlrpc
+.br
+.B skylitedcpp-cli-xmlrpc
+<Key>
+.SH "DESCRIPTION"
+.PP
+\fBSkyliteDC++\fP is a cross-platform program that uses the Direct Connect and ADC protocol. It is compatible with other DC clients, such as the original DC from Neomodus, DC++ and derivatives. SkyliteDC++ also interoperates with all common DC hub software.
+.PP
+To use this program you need first install few perl modules:
+.br
+Getopt::Long
+.br
+Data::Dump
+.br
+Term::ShellUI
+.br
+RPC::XML
+.SH "COMMAND LINE OPTIONS"
+.RB "A summary of options is included below."
+.TP
+.BR "\-h,  \-\-help"
+Display help and exit
+.TP
+.BR "\-V,  \-\-version"
+Show version information and exit
+.SH "FILES"
+.TP
+.B "~/.config/skylitedc++++/" or "$XDG_CONFIG_HOME/skylitedc++++/"
+Directory with user configuration files and logs
+.TP
+.B "/usr/local/share/skylitedcpp/cli/" or "/usr/share/skylitedcpp/cli/"
+Directory with default configuration file
+.SH "DOCUMENTATION"
+.TP
+Actual README file you can always find here: \fBhttps://raw.github.com/skylitedcpp/skylitedcpp/master/skylitedcpp-cli/README\fR
+.SH AUTHOR
+This program was written by Dmitry Kolosov <onyx@z-up.ru> and others (see file AUTHORS).
+.br
+SkyliteDC++ homepage: \fBhttp://code.google.com/p/skylitedc++/\fR
+.SH "BUG REPORTS"
+If you find a bug in SkyliteDC++ please report it here:
+.B http://code.google.com/p/skylitedc++/issues/list
+.PP
+This manual page was written by Boris Pek <tehnick-8@mail.ru> for the Debian project (and may be used by others).

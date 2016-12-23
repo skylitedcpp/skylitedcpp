@@ -1,0 +1,77 @@
+.TH "skylitedcpp-daemon" 1 "16 Jun 2013"
+.SH "NAME"
+skylitedcpp-daemon \- simple daemon controllable via XMLRPC or JSONRPC
+.SH "SYNOPSIS"
+.PP
+.B skylitedcpp-daemon
+\-d
+.br
+.B skylitedcpp-daemon
+<Key>
+.SH "DESCRIPTION"
+.PP
+\fBSkyliteDC++\fP is a cross-platform program that uses the Direct Connect and ADC protocol. It is compatible with other DC clients, such as the original DC from Neomodus, DC++ and derivatives. SkyliteDC++ also interoperates with all common DC hub software.
+.SH "COMMAND LINE OPTIONS"
+.RB "A summary of options is included below."
+.TP
+.BR "\-d",  \-\-daemon"
+Run program as daemon
+.TP
+.BR "\-v",  \-\-verbose"
+Verbose mode
+.TP
+.BR "\-D",  \-\-debug"
+Debug mode
+.TP
+.BR "\-s",  \-\-syslog"
+Use syslog in daemon mode
+.TP
+.BR "\-S <file>",  \-\-log=<file>"
+Write daemon log to <file> (default: @config_dir@/Logs/daemon.log)
+.TP
+.BR "\-P <port>",  \-\-port=<port>"
+Set port for XMLRPC or JSONRPC (default: 3121)
+.TP
+.BR "\-L <ip>",  \-\-ip=<ip>"
+Set IP address for XMLRPC or JSONRPC (default: 127.0.0.1)
+.TP
+.BR "\-p file",  \-\-pidfile=<file>"
+Write daemon process ID to <file>
+.TP
+.BR "\-c dir",  \-\-confdir=<dir>"
+Store config in <dir>
+.TP
+.BR "\-l <dir>",  \-\-localdir=<dir>"
+Store local data (cache, temp files) in <dir> (defaults is equal confdir)
+.TP
+.BR "\-u <file>",  \-\-rpclog=<file>"
+Write xmlrpc log to <file> (default: /tmp/skylitedcpp-daemon.xmlrpc.log)
+.TP
+.BR "\-U <uripath>",  \-\-uripath=<uripath>"
+Set UriPath for xmlrpc abyss server to <uripath> (default: /skylitedcpp)
+.TP
+.BR "\-h,  \-\-help"
+Display help and exit
+.TP
+.BR "\-V,  \-\-version"
+Show version information and exit
+.SH "FILES"
+.TP
+.B "~/.config/skylitedc++++/" or "$XDG_CONFIG_HOME/skylitedc++++/"
+Directory with user configuration files
+.SH "DOCUMENTATION"
+.TP
+Detail documentation about available XMLRPC and JSONRPC methods can be found in our wiki:
+.br
+\fBhttp://code.google.com/p/skylitedc++/wiki/XMLRPC\fR
+.br
+\fBhttp://code.google.com/p/skylitedc++/wiki/JSONRPC\fR
+.SH AUTHOR
+This program was written by SkyliteDC++ developers team (see file AUTHORS).
+.br
+SkyliteDC++ homepage: \fBhttp://code.google.com/p/skylitedc++/\fR
+.SH "BUG REPORTS"
+If you find a bug in SkyliteDC++ please report it here:
+.B http://code.google.com/p/skylitedc++/issues/list
+.PP
+This manual page was written by Boris Pek <tehnick-8@mail.ru> for the Debian project (and may be used by others).
