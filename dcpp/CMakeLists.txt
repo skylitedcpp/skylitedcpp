@@ -1,0 +1,111 @@
+project (dcpp)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+cmake_minimum_required (VERSION 2.6)
+
+aux_source_directory(${PROJECT_SOURCE_DIR} dcpp_srcs)
+file (GLOB dcpp_hdrs ${PROJECT_SOURCE_DIR}/*.h)
+set (DCPP_SRCS @dcpp_srcs@ PARENT_SCOPE)
+set (DCPP_HDRS @dcpp_hdrs@ PARENT_SCOPE)
+
+if (NOT LUA_SCRIPT)
+  list (REMOVE_ITEM dcpp_srcs ${CMAKE_CURRENT_SOURCE_DIR}/ScriptManager.cpp)
+endif ()
+
+include_directories (${Boost_INCLUDE_DIR} ${BZIP2_INCLUDE_DIR} ${ZLIB_INCLUDE_DIR} ${OPENSSL_INCLUDE_DIR} ${GETTEXT_INCLUDE_DIR} ${LUA_INCLUDE_DIR} ${IDNA_INCLUDE_DIR})
+
+if (WIN32)
+  set (LINK STATIC)
+  set (WIN32_LIBS "ws2_32")
+else (WIN32)
+  if (NOT CMAKE_CROSSCOMPILING)
+    if (HAIKU)
+        set (PTHREADS "root")
+        set (HAIKU_LIB "network" "textencoding")
+    else (HAIKU)
+        set (PTHREADS "pthread")
+    endif(HAIKU)
+  endif (NOT CMAKE_CROSSCOMPILING)
+endif (WIN32)
+
+if (NOT LINK)
+  set (LINK SHARED)
+endif (NOT LINK)
+
+if (APPLE)
+  set (APPLE_LIBS "iconv")
+endif (APPLE)
+
+set (UPNP "extra")
+
+add_library (dcpp ${LINK} ${dcpp_srcs})
+
+if (WITH_DHT)
+  add_definitions ( -DWITH_DHT )
+  set (DHT_LIB "dht")
+endif (WITH_DHT)
+
+if (PERL_REGEX)
+  set_property(SOURCE ${PROJECT_SOURCE_DIR}/ADLSearch.cpp PROPERTY COMPILE_DEFINITIONS USE_PCRE )
+  set(PCRE ${PCRE_LIBRARIES})
+endif (PERL_REGEX)
+
+if (USE_IDNA)
+    set_property(SOURCE ${PROJECT_SOURCE_DIR}/Util.cpp PROPERTY COMPILE_DEFINITIONS USE_IDNA APPEND)
+endif(USE_IDNA)
+
+if (XATTR_FOUND)
+    set_property(SOURCE ${PROJECT_SOURCE_DIR}/HashManager.h PROPERTY COMPILE_DEFINITIONS USE_XATTR APPEND)
+    set_property(SOURCE ${PROJECT_SOURCE_DIR}/HashManager.cpp PROPERTY COMPILE_DEFINITIONS USE_XATTR APPEND)
+endif (XATTR_FOUND)
+
+if (USE_MINIUPNP)
+    set_property(SOURCE ${PROJECT_SOURCE_DIR}/DCPlusPlus.cpp ${PROJECT_SOURCE_DIR}/UPnPManager.cpp  PROPERTY COMPILE_DEFINITIONS USE_MINIUPNP )
+endif()
+
+if (ICONV_SECOND_ARGUMENT_IS_CONST)
+    set_property(SOURCE ${PROJECT_SOURCE_DIR}/Text.cpp PROPERTY COMPILE_DEFINITIONS ICONV_CONST=const)
+endif (ICONV_SECOND_ARGUMENT_IS_CONST)
+
+if (FORCE_XDG)
+   set_property(SOURCE ${PROJECT_SOURCE_DIR}/Util.cpp PROPERTY COMPILE_DEFINITIONS FORCE_XDG APPEND)
+endif (FORCE_XDG)
+
+if (HAVE_IFADDRS_H)
+  set_property(SOURCE ${PROJECT_SOURCE_DIR}/Util.cpp PROPERTY COMPILE_DEFINITIONS HAVE_IFADDRS_H APPEND)
+endif (HAVE_IFADDRS_H)
+
+if (WIN32)
+   set_property(TARGET dcpp PROPERTY COMPILE_FLAGS)
+else(WIN32)
+   set_property(TARGET dcpp PROPERTY COMPILE_FLAGS -fPIC)
+endif (WIN32)
+
+target_link_libraries (dcpp ${DHT_LIB} ${PTHREADS} ${BZIP2_LIBRARIES} ${ZLIB_LIBRARIES}
+${OPENSSL_LIBRARIES} ${GETTEXT_LIBRARIES} ${ICONV_LIBRARIES} ${WIN32_LIBS} ${APPLE_LIBS} ${LUA_LIBRARIES} ${UPNP} ${PCRE} ${IDNA_LIBRARIES} ${XATTR_LIBRARIES} ${HAIKU_LIB} ${Boost_LIBRARIES})
+set_target_properties(dcpp PROPERTIES VERSION ${SOVERSION} OUTPUT_NAME "skylitedcpp")
+
+if (APPLE)
+  set (LIBDIR1 .)
+  set (LIBDIR ${PROJECT_NAME_GLOBAL}.app/Contents/MacOS)
+endif(APPLE)
+
+if (LINK STREQUAL SHARED)
+install (TARGETS dcpp
+            LIBRARY DESTINATION ${LIBDIR} NAMELINK_SKIP
+            BUNDLE DESTINATION ${LIBDIR1})
+			LIBRARY DESTINATION lib
+endif (LINK STREQUAL SHARED)
+
+if (WITH_DEV_FILES)
+    if (NOT EISKALTDCPP_INCLUDE_DIR)
+        set (EISKALTDCPP_INCLUDE_DIR "${CMAKE_INSTALL_PREFIX}/include/skylitedcpp")
+    endif (NOT EISKALTDCPP_INCLUDE_DIR)
+    message (STATUS "Headers of libskylitedcpp will be installed to: ${EISKALTDCPP_INCLUDE_DIR}")
+    install (FILES ${dcpp_hdrs} DESTINATION ${EISKALTDCPP_INCLUDE_DIR}/dcpp/)
+endif (WITH_DEV_FILES)
+
+foreach(LANG ${LANGUAGES})
+    install(FILES
+        ${dcpp_BINARY_DIR}/locale/${LANG}/LC_MESSAGES/libskylitedcpp.mo
+            DESTINATION ${LOCALE_DIR}/${LANG}/LC_MESSAGES)
+endforeach(LANG ${LANGUAGES})
