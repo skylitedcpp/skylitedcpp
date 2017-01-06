@@ -1,0 +1,8 @@
+msg_listen="Listen"
+msg_artist="From Artist"
+msg_album="From Album"
+msg_duration="Duration"
+msg_player="Player"
+msg_stop="Qmmp Player Stopped"
+msg_down="Qmmp Player Down"
+msg_stream="From"

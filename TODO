@@ -1,0 +1,20 @@
+The most important changes:
+
+*** common changes ***
+* Add IPv6 support.
+* Rewrite code from Boost to C++11 where it is possible.
+* Improve Lua support.
+
+*** skylitedcpp-qt ***
+* Add Qt5 support.
+* Add dialog widget for debugging Lua scripts.
+
+*** skylitedcpp-gtk ***
+* Get rid of deprecated Gtk+ 3.x elements.
+* Confirugation dialog for IP filter.
+
+*** skylitedcpp-daemon ***
+* See: skylitedcpp-cli/TODO
+
+*** skylitedcpp-cli ***
+* See: skylitedcpp-cli/TODO

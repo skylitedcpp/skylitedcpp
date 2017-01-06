@@ -1,0 +1,8 @@
+msg_listen="Escucha"
+msg_artist="Del Grupo"
+msg_album="Del Album"
+msg_duration="Duración"
+msg_player="Reproductor"
+msg_stop="Qmmp Player Parado"
+msg_down="Qmmp Player Apagado"
+msg_stream="Desde"

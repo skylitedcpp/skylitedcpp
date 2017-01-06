@@ -239,21 +239,20 @@ endif (APPLE)
 
 message (STATUS "Data directory: ${CLIENT_DATA_DIR}")
 
-if (DCPP_REVISION)
-    set (skylitedcpp_WC_REVISION ${DCPP_REVISION})
-    message (STATUS "DCPP_REVISION is set to: ${skylitedcpp_WC_REVISION}")
-elseif (GIT_FOUND)
-    execute_process (COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
-                WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-                OUTPUT_VARIABLE skylitedcpp_WC_REVISION
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-    message (STATUS "Build Git commit ID: ${skylitedcpp_WC_REVISION}")
-    if (NOT skylitedcpp_WC_REVISION MATCHES [0-9a-z]+)
-        set (skylitedcpp_WC_REVISION "${VERSION_SUFFIX}")
-    endif ()
-elseif (NOT DCPP_REVISION)
-    set (skylitedcpp_WC_REVISION "${VERSION_SUFFIX}")
-endif ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 configure_file(${PROJECT_SOURCE_DIR}/Version.h.in ${PROJECT_BINARY_DIR}/VersionGlobal.h)
 

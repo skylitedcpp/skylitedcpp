@@ -1,0 +1,8 @@
+msg_listen="cлушает"
+msg_artist="от артиста"
+msg_album="из альбома"
+msg_duration="длительность"
+msg_player="проигрыватель"
+msg_stop="проигрыватель Qmmp остановлен"
+msg_down="проигрыватель Qmmp отключен"
+msg_stream="From" #need translate
